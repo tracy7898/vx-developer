@@ -1,0 +1,98 @@
+<!--result.wxml-->
+<view class="container">
+  <!-- 未找到标准 -->
+  <view class="not-found" wx:if="{{notFound}}">
+    <text class="icon">❌</text>
+    <text class="title">未找到标准信息</text>
+    <text class="desc">标准号：{{standard}}</text>
+    <text class="tip">该标准暂未收录，请确认标准号是否正确</text>
+    <button class="btn btn-primary" bindtap="backToHome">返回重试</button>
+  </view>
+
+  <!-- 找到标准 -->
+  <view class="result-content" wx:else>
+    <!-- 成功标识 -->
+    <view class="success-badge">
+      <text class="badge-icon">✓</text>
+      <text class="badge-text">识别成功</text>
+    </view>
+
+    <!-- 标准号 -->
+    <view class="standard-card">
+      <text class="standard-no">{{standardInfo.standardNo}}</text>
+      <text class="standard-name">{{standardInfo.name}}</text>
+    </view>
+
+    <!-- 详细信息 -->
+    <view class="info-section">
+      <view class="info-title">
+        <text class="title-icon">📋</text>
+        <text class="title-text">这是什么</text>
+      </view>
+      <view class="info-card">
+        <view class="info-row">
+          <text class="label">标准类型：</text>
+          <text class="value">{{standardInfo.typeName}}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">油品类别：</text>
+          <text class="value">{{standardInfo.category}}</text>
+        </view>
+        <view class="info-row" wx:if="{{standardInfo.levels.length > 0}}">
+          <text class="label">等级划分：</text>
+          <text class="value">{{standardInfo.levels.join('、')}}</text>
+        </view>
+        <view class="info-desc">
+          <text>{{standardInfo.description}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 水平评价 -->
+    <view class="info-section">
+      <view class="info-title">
+        <text class="title-icon">📊</text>
+        <text class="title-text">水平如何</text>
+      </view>
+      <view class="info-card">
+        <view class="quality-badge quality-{{standardInfo.qualityClass}}">
+          <text>{{standardInfo.quality}}</text>
+        </view>
+        <view class="quality-desc">
+          <text>{{standardInfo.qualityDesc}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 购买建议 -->
+    <view class="info-section">
+      <view class="info-title">
+        <text class="title-icon">💡</text>
+        <text class="title-text">购买建议</text>
+      </view>
+      <view class="info-card suggestion-card">
+        <text class="suggestion-text">{{standardInfo.suggestion}}</text>
+        <view class="tips">
+          <view class="tip-item">
+            <text class="tip-icon">✓</text>
+            <text>优先选择"压榨"工艺，营养保留更完整</text>
+          </view>
+          <view class="tip-item">
+            <text class="tip-icon">✓</text>
+            <text>等级越高（一级>二级），精炼程度越高</text>
+          </view>
+          <view class="tip-item">
+            <text class="tip-icon">✓</text>
+            <text>注意查看生产日期，越新鲜越好</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="action-buttons">
+      <button class="btn btn-secondary" bindtap="backToHome">返回首页</button>
+      <button class="btn btn-primary" bindtap="scanAgain">再次识别</button>
+    </view>
+  </view>
+</view>

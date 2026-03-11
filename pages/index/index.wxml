@@ -1,0 +1,57 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="logo">🛡️</text>
+    <text class="title">执行标准识别</text>
+    <text class="subtitle">拍照识别食用油标准，了解品质等级</text>
+  </view>
+
+  <view class="main-content">
+    <!-- 扫描动画区域 -->
+    <view class="scan-area" wx:if="{{scanning}}">
+      <view class="scan-box">
+        <view class="scan-line"></view>
+        <text class="scan-text">正在识别中...</text>
+      </view>
+    </view>
+
+    <!-- 上传区域 -->
+    <view class="upload-area" wx:else>
+      <image class="preview-image" wx:if="{{imagePath}}" src="{{imagePath}}" mode="aspectFit"></image>
+      <view class="upload-placeholder" wx:else>
+        <text class="icon">📷</text>
+        <text class="tip">拍照或上传食用油包装照片</text>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="action-buttons">
+      <button class="btn btn-primary" bindtap="takePhoto">
+        <text class="btn-icon">📸</text>
+        拍照识别
+      </button>
+      <button class="btn btn-secondary" bindtap="chooseImage">
+        <text class="btn-icon">🖼️</text>
+        从相册选择
+      </button>
+    </view>
+
+    <!-- 手动输入 -->
+    <view class="manual-input">
+      <text class="input-label">或手动输入标准号：</text>
+      <view class="input-group">
+        <input 
+          class="standard-input" 
+          placeholder="例如：GB/T 19111" 
+          value="{{manualInput}}"
+          bindinput="onInputChange"
+        />
+        <button class="btn-search" bindtap="searchStandard">查询</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <text class="footer-text">健康生活，从了解标准开始</text>
+  </view>
+</view>

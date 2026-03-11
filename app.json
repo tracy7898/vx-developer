@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/result/result"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "执行标准",
+    "navigationBarBackgroundColor": "#52c41a",
+    "backgroundColor": "#f0f9ff"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
